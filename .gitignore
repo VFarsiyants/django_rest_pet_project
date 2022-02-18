@@ -1,6 +1,7 @@
 # Created by https://www.toptal.com/developers/gitignore/api/macos
 # Edit at https://www.toptal.com/developers/gitignore?templates=macos
-db.sqlite3
+package-lock.json
+backend/db.sqlite3
 ### macOS ###
 # General
 .env

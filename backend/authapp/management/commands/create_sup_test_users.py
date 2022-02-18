@@ -3,7 +3,7 @@ import json
 from django.conf import settings
 from django.core.management import BaseCommand
 
-from authapp.models import User
+from backend.authapp.models import User
 
 
 def load_test_users(file_name):
