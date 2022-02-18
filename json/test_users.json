@@ -1,0 +1,30 @@
+[
+  {
+    "username": "mr_smith",
+    "first_name": "Djo",
+    "last_name": "Smith",
+    "email": "mrsmith@gb.local",
+    "password": "123456qw"
+  },
+  {
+    "username": "ms_smith",
+    "first_name": "Amanda",
+    "last_name": "Smith",
+    "email": "mssmith@gb.local",
+    "password": "123456qw"
+  },
+  {
+    "username": "jdoyle",
+    "first_name": "Jason",
+    "last_name": "Doyle",
+    "email": "jdoyle@gb.local",
+    "password": "123456qw"
+  },
+  {
+    "username": "ffinotti",
+    "first_name": "Federico",
+    "last_name": "Finotti",
+    "email": "ffinotti@gb.local",
+    "password": "123456qw"
+  }
+]
