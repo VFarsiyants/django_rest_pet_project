@@ -1,8 +1,9 @@
-from rest_framework.viewsets import ModelViewSet
+from rest_framework.viewsets import ReadOnlyModelViewSet
+from rest_framework.mixins import UpdateModelMixin
 from .serializer import UserModelSerializer
 from .models import User
 
 
-class UserViewSet(ModelViewSet):
+class UserViewSet(UpdateModelMixin, ReadOnlyModelViewSet):
     serializer_class = UserModelSerializer
     queryset = User.objects.all()

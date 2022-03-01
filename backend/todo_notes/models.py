@@ -15,7 +15,7 @@ class Project(models.Model):
 class TodoNote(models.Model):
     project_id = models.ForeignKey(Project, on_delete=models.CASCADE)
     text = models.CharField(max_length=1024, verbose_name='Текст заметки')
-    created_at = models.DateTimeField(auto_now=True, verbose_name='Дата создания')
-    updated_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата обновления')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
+    updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата обновления')
     user_id = models.ForeignKey(User, on_delete=models.PROTECT)
     closed = models.BooleanField(default=False, verbose_name='Статус', )
