@@ -15,11 +15,11 @@ class App extends React.Component {
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         axios
             .get('http://127.0.0.1:8000/api/users/')
             .then(response => {
-                const users = response.data
+                const users = response.data.results
                 this.setState({
                     'users': users
                 })
@@ -28,14 +28,14 @@ class App extends React.Component {
             .catch(error => console.log(error))
     }
 
-    render () {
+    render() {
         return (
             <div className="Wrapper">
                 <Menu />
                 <div className="Content">
                     <UserList users={this.state.users} />
                 </div>
-                <Footer className="Footer"/>
+                <Footer className="Footer" />
             </div>
         )
     }

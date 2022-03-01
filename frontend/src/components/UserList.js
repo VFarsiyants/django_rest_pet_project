@@ -1,13 +1,14 @@
 import './UserList.css';
 
-const UserItem = ({user}) => {
+const UserItem = ({ user }) => {
+    console.dir(user)
     return (
         <tr>
             <td>
-                {user.first_name}
+                {user.firstName}
             </td>
             <td>
-                {user.last_name}
+                {user.lastName}
             </td>
             <td>
                 {user.email}
@@ -17,19 +18,25 @@ const UserItem = ({user}) => {
 }
 
 
-const UserList = ({users}) => {
+const UserList = ({ users }) => {
     return (
         <table>
-            <th>
-                First name
-            </th>
-            <th>
-                Last name
-            </th>
-            <th>
-                email
-            </th>
-            {users.map((user) => <UserItem user={user} />)}
+            <thead>
+                <tr>
+                    <th>
+                        First name
+                    </th>
+                    <th>
+                        Last name
+                    </th>
+                    <th>
+                        email
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {users.map((user) => <UserItem user={user} />)}
+            </tbody>
         </table>
     )
 }
