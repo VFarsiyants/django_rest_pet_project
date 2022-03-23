@@ -1,5 +1,6 @@
 import './UserList.css';
 import { Link } from 'react-router-dom';
+import { nanoid } from 'nanoid';
 
 
 const UserItem = ({ user }) => {
@@ -36,7 +37,7 @@ const UserList = ({ users }) => {
                 </tr>
             </thead>
             <tbody>
-                {users.map((user) => <UserItem user={user} />)}
+                {users.map((user) => <UserItem user={user} key={nanoid()} />)}
             </tbody>
         </table>
     )

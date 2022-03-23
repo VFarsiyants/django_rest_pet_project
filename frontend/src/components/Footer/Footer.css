@@ -1,6 +1,6 @@
 .Footer {
     height: 120px;
-    background-color: #191970;
+    background-color: #21222A;
     width: 100%;
     padding-top: 30px;
     padding-left: 30px;
@@ -8,5 +8,6 @@
 
 h3 {
     background: None;
-    color: #1E90FF;
+    color: #ffffff;
+    text-align: center;
 }
