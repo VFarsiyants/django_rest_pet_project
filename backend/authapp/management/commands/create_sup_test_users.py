@@ -39,7 +39,8 @@ class Command(BaseCommand):
             dev_group.permissions.add(Permission.objects.get(codename=right))
 
         for right in project_owners_rights:
-            project_owners_group.permissions.add(Permission.objects.get(codename=right))
+            project_owners_group.permissions.add(
+                Permission.objects.get(codename=right))
 
         User.objects.create_superuser(
             username='django',
@@ -51,7 +52,7 @@ class Command(BaseCommand):
 
         # Создаем тестовых пользователей для каждой группы
 
-        admin_user = User.objects.create_superuser(
+        admin_user = User.objects.create_user(
             username='admin',
             first_name='Администратор',
             last_name='Администратор',
@@ -59,7 +60,7 @@ class Command(BaseCommand):
             password='admin'
         )
 
-        dev_user = User.objects.create_superuser(
+        dev_user = User.objects.create_user(
             username='dev',
             first_name='Разработчик',
             last_name='Разработчик',
@@ -67,7 +68,7 @@ class Command(BaseCommand):
             password='dev'
         )
 
-        project_owner_user = User.objects.create_superuser(
+        project_owner_user = User.objects.create_user(
             username='pr_owner',
             first_name='Руководитель проекта',
             last_name='Руководитель проекта',
@@ -82,4 +83,3 @@ class Command(BaseCommand):
 
         for user in test_users:
             User.objects.create_user(**user)
-
