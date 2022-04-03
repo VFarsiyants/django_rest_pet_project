@@ -4,6 +4,7 @@ from .filters import ProjectFilter, TodoNoteFilter
 from .models import Project, TodoNote
 from .serializers import ProjectSerializer, TodoNoteSerializer
 from rest_framework.pagination import LimitOffsetPagination
+from rest_framework.permissions import DjangoModelPermissions
 
 
 class ProjectLimitOffsetPagination(LimitOffsetPagination):
