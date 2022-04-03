@@ -5,6 +5,7 @@ from authapp.views import UserViewSet
 from todo_notes.views import ProjectViewSet, TodoNoteViewSet
 from rest_framework.authtoken.views import obtain_auth_token
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from graphene_django.views import GraphQLView
 
 router = DefaultRouter()
 router.register('users', UserViewSet)
@@ -17,5 +18,6 @@ urlpatterns = [
     path('api-token-auth/', obtain_auth_token),
     path('api/', include(router.urls)),
     path('api-jwt-token/', TokenObtainPairView.as_view(), name='jwt_obtain_token'),
-    path('api-jwt-token/refresh', TokenRefreshView.as_view(), name='jwt_refresh_token')
+    path('api-jwt-token/refresh', TokenRefreshView.as_view(), name='jwt_refresh_token'),
+    path("graphql/", GraphQLView.as_view(graphiql=True)),
 ]
