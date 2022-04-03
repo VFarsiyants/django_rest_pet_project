@@ -1,0 +1,44 @@
+.Menu {
+    height: 120px;
+    width: 100%;
+    background-color: #191970;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.MenuHeader {
+    margin-top: 20px;
+}
+
+.MenuHeader, h1, h2 {
+    background-color: #191970;
+    color: #1E90FF;
+}
+
+li {
+    width: 150px;
+    height: 30px;
+    border: 1px solid black;
+    text-align: center;
+    border-radius: 15px;
+    margin: 5px;
+    background-color: antiquewhite;
+}
+
+.MenuLinks {
+    background-color: #191970;
+    color: #1E90FF;
+    list-style: none;
+}
+
+.MenuLink {
+    text-decoration: none;
+    background-color: antiquewhite;
+    color: #1E90FF;
+    line-height: 30px;
+}
+
+.MenuLink:hover {
+    cursor: pointer;
+}
