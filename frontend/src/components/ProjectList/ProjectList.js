@@ -1,22 +1,33 @@
 import './ProjectList.css';
 import { Link } from 'react-router-dom';
 
-const ProjectItem = ({ project }) => {
+const ProjectItem = ({ project, deleteProject }) => {
     return (
-        <tr>
-            <td>
-                <Link to={`project_notes/${project.name}`}>{project.name}</Link>
-            </td>
-            <td>
-                {project.repoLink}
-            </td>
-        </tr>
+            <tr>
+                <td>
+                    <Link to={`${project.id}`}>{project.name}</Link>
+                </td>
+                <td>
+                    {project.repoLink}
+                </td>
+                <td>
+                    <button 
+                        type='button'
+                        className='project_delete_btn'
+                        onClick={() => deleteProject(project.id)}
+                    >
+                        Delete
+                    </button>
+                </td>
+            </tr>
     )
 }
 
 
-const ProjectList = ({ projects }) => {
+const ProjectList = ({ projects, deleteProject }) => {
     return (
+        <section>
+        <Link to='/projects/create'>Create Project</Link>
         <table>
             <thead>
                 <tr>
@@ -26,12 +37,18 @@ const ProjectList = ({ projects }) => {
                     <th>
                         Repo link
                     </th>
+                    <th className='project_delete_btn'>
+                        Delete
+                    </th>
                 </tr>
             </thead>
             <tbody>
-                {projects.map((project) => <ProjectItem project={project} />)}
+                {projects.map((project) => <ProjectItem 
+                    project={project} 
+                    deleteProject={deleteProject}/>)}
             </tbody>
         </table>
+        </section>
     )
 }
 
