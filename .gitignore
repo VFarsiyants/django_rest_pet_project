@@ -34,5 +34,6 @@ Temporary Items
 __pycache__/
 .idea/
 env/
+.vscode/
 
 # End of https://www.toptal.com/developers/gitignore/api/macos

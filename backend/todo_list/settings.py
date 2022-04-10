@@ -42,7 +42,12 @@ INSTALLED_APPS = [
     'django_filters',
     'rest_framework_simplejwt',
     'rest_framework.authtoken',
+    'graphene_django',
 ]
+
+GRAPHENE = {
+    "SCHEMA": "todo_list.schema.schema"
+}
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
