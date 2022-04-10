@@ -35,5 +35,6 @@ __pycache__/
 .idea/
 .vscode/
 env/
+.vscode/
 
 # End of https://www.toptal.com/developers/gitignore/api/macos
