@@ -33,6 +33,7 @@ Temporary Items
 .apdisk
 __pycache__/
 .idea/
+.vscode/
 env/
 .vscode/
 
