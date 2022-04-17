@@ -5,6 +5,8 @@ import Menu from './components/Menu/Menu'
 import Footer from './components/Footer/Footer'
 import ProjectList from './components/ProjectList/ProjectList';
 import TodoNoteList from './components/TodoNoteList';
+import TodoNoteForm from './components/TodoNoteForm';
+import ProjectForm from './components/ProjectForm';
 import axios from 'axios';
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
 
@@ -27,7 +29,8 @@ class App extends React.Component {
             'projects': [],
             'todoNotes': [],
             'token': '',
-            'firstname': ''
+            'firstname': '',
+            'userId': null
         }
     }
 
@@ -69,7 +72,8 @@ class App extends React.Component {
         axios
             .get(`http://localhost:8000/api/users/?username=${login}`, { headers })
             .then(response => {
-                this.setState({ 'firstname': response.data.results[0].firstName })
+                this.setState({ 'firstname': response.data.results[0].firstName,
+                                'userId':  response.data.results[0].id})
             })
     }
 
@@ -125,6 +129,57 @@ class App extends React.Component {
         return !!this.state.token
     }
 
+    deleteNote(id){
+        const headers = this.getHeader()
+        axios.delete(`http://127.0.0.1:8000/api/todo_notes/${id}/`, { headers })
+            .then(response => {
+                this.setState({todoNotes: this.state.todoNotes.filter((note)=>
+                    note.id !== id)})
+                })
+            .catch(error => console.log(error))
+    }
+
+    deleteProject(id){
+        const headers = this.getHeader()
+        axios.delete(`http://127.0.0.1:8000/api/projects/${id}/`, { headers })
+            .then(response => {
+                this.setState({projects: this.state.projects.filter((project)=>
+                    project.id !== id)})
+                })
+            .catch(error => console.log(error))
+    }
+
+    createNote(text, project) {
+        let headers = this.getHeader()
+        let data = {
+            closed: false,
+            text: text, 
+            projectId: project,
+            userId: this.state.userId
+        }
+        axios.post('http://127.0.0.1:8000/api/todo_notes/', data, { headers })
+        .then(response => {
+            let newNote = response.data
+            this.setState({todoNotes: [...this.state.todoNotes, newNote]})
+        .catch(error => console.log(error))
+        })
+    }
+
+    createProject(name, repoLink, usersId) {
+        let headers = this.getHeader()
+        let data = {
+            name: name,
+            repoLink: repoLink,
+            userId: usersId
+        }
+        axios.post('http://127.0.0.1:8000/api/projects/', data, { headers })
+        .then(response => {
+            let newProject = response.data
+            this.setState({projects: [...this.state.projects, newProject]})
+        .catch(error => console.log(error))
+        })
+    }
+
     render() {
         return (
             <div className="Wrapper">
@@ -148,15 +203,41 @@ class App extends React.Component {
                                 exact path='projects'
                                 element={this.isAuth() ?
                                     <ProjectList
-                                        projects={this.state.projects} /> :
+                                        projects={this.state.projects} 
+                                        deleteProject={(id) => this.deleteProject(id)}/> :
                                     <p>Please authorize</p>} />
                             <Route
                                 exact path='notes'
                                 element={this.isAuth() ?
                                     <TodoNoteList
-                                        todoNotes={this.state.todoNotes} /> :
+                                        todoNotes={this.state.todoNotes} 
+                                        deleteNote={(id) => this.deleteNote(id)}/> :
                                     <p>Please authorize</p>} />
                             <Route path='*' element={<NotFound />} />
+                            <Route
+                                exact path='/projects/:id'
+                                element={this.isAuth() ?
+                                    <TodoNoteList
+                                        todoNotes={this.state.todoNotes} 
+                                        deleteNote={(id) => this.deleteNote(id)}/> :
+                                    <p>Please authorize</p>} />
+                            <Route path='*' element={<NotFound />} />
+                            <Route 
+                                exact path='/notes/create' 
+                                element = {<TodoNoteForm 
+                                                createNote={(text, project) => 
+                                                    this.createNote(text, project)}
+                                                projects={this.state.projects}
+                                            />}
+                            />
+                            <Route 
+                                exact path='/projects/create' 
+                                element = {<ProjectForm 
+                                                createProject={(name, repoLink, usersId) => 
+                                                    this.createProject(name, repoLink, usersId)}
+                                                users={this.state.users}
+                                            />}
+                            />
                         </Routes>
                     </div>
                 </BrowserRouter>
